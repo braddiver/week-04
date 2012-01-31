@@ -51,10 +51,17 @@ describe "#search_for_quote" do
           results.should == [ 'Calmer than you are dude', 'Her life is in your hands dude' ]
           
         end
-        
+      end
+      describe "multiple search criteria" do
+
+        it "should not return duplicate search results" do
+          results = search_for_quote(:file => TEXT_FILE,:start_with => "Give",:end_with => "Lebowski")
+
+          results.should have(1).items
+          results.should == [ 'Give us the money Lebowski' ]
+
+        end
       end
     end
-    
   end
-  
 end
